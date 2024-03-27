@@ -1,0 +1,55 @@
+
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
+
+.conference-avatar img {
+  width: 100%; /* Ajustar el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Mantener la proporción de aspecto */
+  object-fit: cover; /* Ajustar la imagen para cubrir el contenedor manteniendo la relación de aspecto */
+}
+
+
+.conference-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form-wrap {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+
+:host {
+  .conference-card {
+    max-width: 400px; /* Ajusta el tamaño máximo de las tarjetas */
+    margin: 30px 30px; /* Ajusta el margen vertical y horizontal entre las tarjetas */
+  }
+
+
+  .card-img-top {
+    max-height: 300px; /* Ajusta el tamaño máximo de la imagen */
+  }
+
+  .card-title {
+    font-size: 1rem; /* Ajusta el tamaño del título */
+  }
+
+  .card-text {
+    font-size: 0.8rem; /* Ajusta el tamaño del texto */
+  }
+
+  .btn {
+    font-size: 0.8rem; /* Ajusta el tamaño de los botones */
+    padding: 0.25rem 0.5rem; /* Ajusta el relleno de los botones */
+  }
+}

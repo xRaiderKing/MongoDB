@@ -1,0 +1,37 @@
+<div class="pantalla">
+  <mat-card-content>
+    <div class="form-wrap center">
+      <!-- FILTRO -->
+      <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Filtrar por título o descripción"
+          #input
+        />
+      </mat-form-field>
+    </div>
+    <div class="row row-cols-md-3 g-0"> <!-- Utiliza Bootstrap grid -->
+      <!-- Iteración sobre cada fila de la tabla -->
+      <div *ngFor="let row of conferencesDataSource.data" class="col">
+        <mat-card class="conference-card">
+          <img mat-card-image [src]="row.coverImage" alt="Portada de la conferencia" class="card-img-top">
+          <mat-card-content>
+            <h5 class="card-title">{{ row.title }}</h5>
+            <p class="card-text">{{ row.description }}</p>
+            <p class="card-text">Lugares: {{ row.schedules[0].place }}</p>
+            <p class="card-text">Fechas: {{ row.schedules[0].date }}</p>
+            <p class="card-text">Asistentes: {{ row.attendees.length }}/{{ row.availableSpots }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button type="button" class="btn btn-primary" (click)="seeDetails(row)">Detalles</button>
+            <button type="button" class="btn btn-success" *ngIf="!isFull(row) && !verifyAttendance(row)" (click)="addAttendance(row)">Asistir</button>
+            <button type="button" class="btn btn-danger" *ngIf="verifyAttendance(row)" (click)="deleteAttendance(row)">Cancelar</button>
+            <button type="button" class="btn btn-secondary" *ngIf="isFull(row) && !verifyAttendance(row)">Lleno</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</div>

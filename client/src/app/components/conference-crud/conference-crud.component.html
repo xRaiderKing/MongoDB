@@ -1,0 +1,109 @@
+<div class="content center">
+  <mat-card class="main-card">
+    <mat-card-content>
+      <div class="form-wrap center">
+        <!-- Boton AGREGAR -->
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="saveConference()"
+          class="input"
+        >
+          AGREGAR CONFERENCIA
+        </button>
+        <br />
+
+        <!-- FILTRO -->
+        <mat-form-field>
+          <mat-label>Filtro</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Filtrar por título o descripción"
+            #input
+          />
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="conferencesDataSource">
+            <!-- Título -->
+            <ng-container matColumnDef="titulo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
+              <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+            </ng-container>
+
+            <!-- Descripción -->
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Descripción
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+            </ng-container>
+
+            <!-- Lugares -->
+            <ng-container matColumnDef="lugares">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Lugares</th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.schedules[0].place }}...
+              </td>
+            </ng-container>
+
+            <!-- Fechas -->
+            <ng-container matColumnDef="fechas">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fechas</th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.schedules[0].date }}...
+              </td>
+            </ng-container>
+
+            <!-- Asistentes -->
+            <ng-container matColumnDef="asistentes">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Asistentes
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.attendees?.length }}/{{ row.availableSpots }}
+              </td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Editar/Borrar
+              </th>
+              <td mat-cell *matCellDef="let row" class="center actions-cell">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  aria-label="Detalles"
+                  (click)="seeDetails(row)"
+                >
+                  <mat-icon>remove_red_eye</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  color="accent"
+                  aria-label="Editar"
+                  (click)="editConference(row)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  aria-label="Borrar"
+                  (click)="deleteConference(row)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

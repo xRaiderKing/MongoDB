@@ -1,0 +1,48 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
+.main-card {
+  width: 90%;
+  margin-top: 5em;
+  height: fit-content;
+}
+
+.form-wrap {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+}
+
+button {
+  height: 3rem;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background-color: lightgray;
+}
+
+.actions-cell {
+  justify-content: flex-start;
+  margin: 0%;
+  padding: 0;
+}
+
+.mat-mdc-cell {
+  overflow: hidden;
+  max-width: 35ch;
+  text-overflow: ellipsis;
+  width: fit-content;
+  white-space: nowrap;
+}

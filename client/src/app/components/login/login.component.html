@@ -1,0 +1,94 @@
+<div class="content center">
+  <mat-card class="main-card">
+    <mat-card-content>
+      <mat-tab-group [(selectedIndex)]="tabIndex">
+        <mat-tab label="LOGIN">
+          <div class="form-wrap center">
+            <br />
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Usuario</mat-label>
+              <input
+                matInput
+                placeholder="Nombre de usuario"
+                [(ngModel)]="userLogIn.username"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Contraseña</mat-label>
+              <input
+                matInput
+                placeholder="Contraseña"
+                [(ngModel)]="userLogIn.password"
+                type="password"
+              />
+            </mat-form-field>
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="remember_session"
+              (ngModelChange)="keepSession()"
+              >Recordarme</mat-checkbox
+            >
+            <br />
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="validateLogin()"
+              class="input"
+            >
+              INICIAR SESIÓN
+            </button>
+            <br />
+            <div class="center">
+              No tienes cuenta?<strong class="signup-text" (click)="changeTab()"
+                >Regístrate</strong
+              >
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="SIGNUP">
+          <div class="form-wrap center">
+            <br />
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Usuario</mat-label>
+              <input
+                matInput
+                placeholder="Elige un nombre"
+                [(ngModel)]="userSignUp.username"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Contraseña</mat-label>
+              <input
+                matInput
+                placeholder="Elige una contraseña"
+                [(ngModel)]="userSignUp.password"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Rol</mat-label>
+              <mat-select [(ngModel)]="userSignUp.role">
+                @for (role of roles; track role) {
+                <mat-option [value]="role.id">{{ role.value }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="signUp()"
+              class="input"
+            >
+              Registrarse
+            </button>
+            <br />
+            <div class="center">
+              Ya tienes cuenta?<strong class="signup-text" (click)="changeTab()"
+                >Inicia sesión</strong
+              >
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,36 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
+.main-card {
+  width: 30%;
+  margin-top: 10em;
+  height: fit-content;
+}
+
+.form-wrap {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+}
+
+.signup-text {
+  cursor: pointer;
+  text-decoration: underline;
+  color: darkblue;
+  margin-left: 1ch;
+}
+
+button {
+  height: 3rem;
+}

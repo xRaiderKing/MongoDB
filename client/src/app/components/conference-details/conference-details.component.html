@@ -1,0 +1,218 @@
+<div class="form-wrap center">
+  <mat-dialog-actions [ngSwitch]="data.action">
+    <h1 *ngSwitchCase="0">DETALLES</h1>
+    <h1 *ngSwitchCase="1">CREAR</h1>
+    <h1 *ngSwitchCase="2">ACTUALIZAR</h1>
+    <h1 *ngSwitchCase="3">ELIMINAR</h1>
+  </mat-dialog-actions>
+
+  <div *ngIf="data.action == 0">
+    <div class="detail">
+      <h3>Titulo:&nbsp;</h3>
+      <p>{{ data.conference.title }}</p>
+    </div>
+    <div class="detail paragraph-width">
+      <h3>Descripción:&nbsp;</h3>
+      <p>{{ data.conference.description }}</p>
+    </div>
+    <div class="detail">
+      <h3>Espacios ocupados:&nbsp;</h3>
+      <p>
+        {{ data.conference.attendees.length }}/{{
+          data.conference.availableSpots
+        }}
+      </p>
+    </div>
+    <br />
+    <h2>HORARIOS</h2>
+    <hr />
+    <div *ngFor="let schedule of data.conference.schedules; index as i">
+      <div class="detail">
+        <h3>Expositor:&nbsp;</h3>
+        <p>{{ schedule.speaker }}</p>
+      </div>
+      <div class="detail">
+        <h3>Imagen de portada:</h3>
+        <img [src]="data.conference.coverImage" alt="Imagen de portada" class="conference-image" />
+      </div>
+      <div class="detail">
+        <h3>Imagen del expositor:</h3>
+        <img [src]="data.conference.speakerImage" alt="Imagen del expositor" class="conference-image"/>
+      </div>
+      <div class="detail">
+        <h3>Lugar:&nbsp;</h3>
+        <p>{{ schedule.place }}</p>
+      </div>
+      <div class="detail">
+        <h3>Fecha:&nbsp;</h3>
+        <p>{{ formatDate(schedule.date) }}</p>
+      </div>
+      <div class="detail">
+        <h3>Hora:&nbsp;</h3>
+        <p>{{ schedule.start }}-{{ schedule.end }}</p>
+      </div>
+      <br />
+      <hr />
+    </div>
+  </div>
+
+  <div *ngIf="data.action == 1" class="form-wrap center no-overflow">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        placeholder="Título"
+        [(ngModel)]="newTitle"
+        class="editable"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Descripción</mat-label>
+      <textarea
+        matInput
+        placeholder="Descripción"
+        [(ngModel)]="newDescription"
+        id="editable"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Espacios disponibles</mat-label>
+      <input
+        matInput
+        placeholder="Espacios disponibles"
+        [(ngModel)]="newAvailableSpots"
+        class="editable"
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Imagen de portada</mat-label>
+      <input matInput placeholder="Enlace de la imagen de portada" [(ngModel)]="newCoverImage" class="editable" />
+    </mat-form-field>
+    <h2>HORARIOS</h2>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Expositor</mat-label>
+      <input matInput [(ngModel)]="newSpeaker" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Lugar</mat-label>
+      <input matInput [(ngModel)]="newPlace" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Imagen del expositor</mat-label>
+      <input matInput placeholder="Enlace de la imagen del expositor" [(ngModel)]="newSpeakerImage" class="editable" />
+    </mat-form-field>
+    <div class="schedule">
+      <mat-form-field appearance="outline" class="input date">
+        <mat-label>Fecha</mat-label>
+        <input matInput [(ngModel)]="newDate" type="date" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input time">
+        <mat-label>Inicio</mat-label>
+        <input matInput [(ngModel)]="newStart" type="time" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input time">
+        <mat-label>Fin</mat-label>
+        <input matInput [(ngModel)]="newEnd" type="time" />
+      </mat-form-field>
+    </div>
+    <br />
+  </div>
+
+  <div *ngIf="data.action != 0 && data.action != 1">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        placeholder="Título"
+        [(ngModel)]="data.conference.title"
+        class="editable"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Descripción</mat-label>
+      <textarea
+        matInput
+        placeholder="Descripción"
+        [(ngModel)]="data.conference.description"
+        id="editable"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Espacios disponibles</mat-label>
+      <input
+        matInput
+        placeholder="Título"
+        [(ngModel)]="data.conference.availableSpots"
+        class="editable"
+      />
+    </mat-form-field>
+    <h2>HORARIOS</h2>
+    <div *ngFor="let schedule of data.conference.schedules; index as i">
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Expositor</mat-label>
+        <input matInput [(ngModel)]="schedule.speaker" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Lugar</mat-label>
+        <input matInput [(ngModel)]="schedule.place" />
+      </mat-form-field>
+      <div class="schedule">
+        <mat-form-field appearance="outline" class="input date">
+          <mat-label>Fecha</mat-label>
+          <input matInput [(ngModel)]="schedule.date" type="date" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input time">
+          <mat-label>Inicio</mat-label>
+          <input matInput [(ngModel)]="schedule.start" type="time" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input time">
+          <mat-label>Fin</mat-label>
+          <input matInput [(ngModel)]="schedule.end" type="time" />
+        </mat-form-field>
+      </div>
+      <hr />
+      <br />
+    </div>
+  </div>
+
+  <mat-dialog-actions [ngSwitch]="data.action">
+    <button
+      mat-raised-button
+      color="primary"
+      class="input"
+      *ngSwitchCase="0"
+      mat-dialog-close
+    >
+      CERRAR
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addConference()"
+      class="input"
+      *ngSwitchCase="1"
+    >
+      GUARDAR
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="updateConference()"
+      class="input"
+      *ngSwitchCase="2"
+    >
+      ACTUALIZAR
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteConference()"
+      class="input"
+      *ngSwitchCase="3"
+    >
+      ELIMINAR
+    </button>
+  </mat-dialog-actions>
+</div>

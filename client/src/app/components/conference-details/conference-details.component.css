@@ -1,0 +1,75 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.form-wrap {
+  padding: 1em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+
+.no-overflow {
+  overflow: auto;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  width: 100%;
+}
+
+button {
+  height: 3rem;
+}
+
+.mdc-dialog__actions,
+.mdc-dialog__surface {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  width: -webkit-fill-available;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  min-height: 2em;
+}
+
+.schedule {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  width: 50%;
+}
+
+.time {
+  width: 9ch;
+}
+
+hr {
+    height: 2px;
+    color: black;
+    background-color: black;
+}
+
+.paragraph-width {
+  width: 50ch;
+}
+
+.conference-image {
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+}
