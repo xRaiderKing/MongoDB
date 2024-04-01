@@ -36,7 +36,6 @@ export class ConferenceService {
       coverImage: conference.coverImage,
       speakerImage: conference.speakerImage,
       
-
     });
   }
 

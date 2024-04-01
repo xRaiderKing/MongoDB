@@ -14,6 +14,7 @@ import { ConferenceService } from '../../services/conference.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Conference } from '../../models/conference.model';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-conference-details',
@@ -29,6 +30,7 @@ import { Conference } from '../../models/conference.model';
     MatDialogActions,
     MatDialogClose,
     HttpClientModule,
+    MatSelectModule,
   ],
   providers: [ConferenceService],
   templateUrl: './conference-details.component.html',
